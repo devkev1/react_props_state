@@ -12,28 +12,29 @@ class App extends Component {
     for (let i = 0; i < numBoxes; i++) {
       boxes.push({
         id: i,
-        color: `rgb(${this.getRandomColor()}, ${this.getRandomColor()}, ${this.getRandomColor()})`,
-      });
+        color: `rgb(${this.getRandomColor()}, ${this.getRandomColor()}, ${this.getRandomColor()})`
+    });
     }
 
     // bind methods to this
     this.state = { boxes };
     this.handleBoxClick = this.handleBoxClick.bind(this);
   }
-  handleBoxClick(e) {
-    console.log(e.target.id);
-    const newBoxes = this.state.boxes.map((box) => {
-      if (box.id == e.target.id) {
-        box.color = `rgb(${this.getRandomColor()}, ${this.getRandomColor()}, ${this.getRandomColor()})`;
-      }
+    handleBoxClick(e) {
+      console.log(e.target.id);
+      const newBoxes = this.state.boxes.map((box) => {
+        // eslint-disable-next-line eqeqeq
+        if (box.id == e.target.id) {
+          box.color = `rgb(${this.getRandomColor()}, ${this.getRandomColor()}, ${this.getRandomColor()})`
+        }
       return box;
-    });
-    this.setState({ boxes: newBoxes });
-  }
-  getRandomColor() {
-    const rgb = Math.round(Math.random() * 255);
-    return rgb;
-  }
+      });
+      this.setState({boxes: newBoxes});
+    }
+    getRandomColor() {
+      const rgb = Math.round(Math.random() * 255);
+      return rgb;
+    }
 
   render() {
     return (
@@ -46,18 +47,17 @@ class App extends Component {
         }}
       >
         <h1>React: State and Props</h1>
-        <div className="App">
-          {this.state.boxes.map((box) => {
-            return (
-              <Box
-                key={box.id}
-                id={box.id}
-                color={box.color}
-                handleClick={this.handleBoxClick}
-              />
-            );
-          })}
-        </div>
+        <div className="App">{ 
+        
+        this.state.boxes.map(box => {
+          return <Box
+          key={box.id}
+          id={box.id}
+          color={box.color}
+          handleClick={this.handleBoxClick}
+      /> 
+        }) 
+        }</div>
       </main>
     );
   }
